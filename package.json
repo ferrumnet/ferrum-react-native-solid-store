@@ -1,7 +1,7 @@
 {
-  "name": "ferrum-crypto",
+  "name": "ferrum-react-native-solid-store",
   "version": "0.0.1",
-  "description": "Common crypto tool used by Ferrum projects",
+  "description": "A solid fault-tolerant storage client for react native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -29,7 +29,7 @@
     "webpack-babel-jest": "^1.0.4"
   },
   "dependencies": {
-    "ferrum-crypto": "https://github.com/ferrumnet/ferrum-crypto.git",
+    "ferrum-crypto": "git+https://github.com/ferrumnet/ferrum-crypto.git",
     "ferrum-plumbing": "git+https://github.com/ferrumnet/ferrum-plumbing.git"
   }
 }
