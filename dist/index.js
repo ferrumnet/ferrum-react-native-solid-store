@@ -6,4 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./schema/DataTypeValidator"));
 __export(require("./schema/SchemaRegistry"));
 __export(require("./schema/SchemaUtils"));
+__export(require("./storage/SolidSecureStorage"));
+__export(require("./storage/SolidSecureStorageFactory"));
+__export(require("./storage/SolidUnsecureStorage"));
 //# sourceMappingURL=index.js.map
