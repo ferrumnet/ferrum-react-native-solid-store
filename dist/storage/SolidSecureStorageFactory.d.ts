@@ -9,7 +9,7 @@ export declare class SolidSecureStorageFactory implements Injectable {
     private schemaRegistry;
     private schemaList;
     constructor(secureStorage: StringStorage, unsecureStorage: JsonStorage, cryptoSvc: CryptorService, schemaRegistry: SchemaRegistry);
-    forSchema(schema: string): SolidSecureStorage | undefined;
+    forSchema(schema: string): SolidSecureStorage;
     __name__(): string;
 }
 //# sourceMappingURL=SolidSecureStorageFactory.d.ts.map

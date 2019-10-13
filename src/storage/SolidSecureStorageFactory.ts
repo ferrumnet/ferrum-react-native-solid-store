@@ -11,13 +11,13 @@ export class SolidSecureStorageFactory implements Injectable {
         private cryptoSvc: CryptorService,
         private schemaRegistry: SchemaRegistry,) { }
 
-    forSchema(schema: string) {
+    forSchema(schema: string): SolidSecureStorage {
         if (!this.schemaList.has(schema)) {
             const storage = new SolidSecureStorage(
                 this.secureStorage, this.unsecureStorage, this.cryptoSvc, this.schemaRegistry, schema);
             this.schemaList.set(schema, storage);
         }
-        return this.schemaList.get(schema);
+        return this.schemaList.get(schema)!;
     }
 
     __name__(): string {return 'SolidSecureStorageFactory';}
