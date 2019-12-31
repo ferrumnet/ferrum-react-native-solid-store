@@ -58,7 +58,7 @@ export class SchemaRegistry implements Injectable {
             const rule = sch.rules[k]! as ValidationRule;
             const value = data.fields[k];
             ValidationUtils.isTrue(
-                rule.required && (value === undefined || value === null),
+                !rule.required || (value !== undefined && value !== null),
                 `Required field ${k} was not provided`);
             const err = rule.validator(data.fields[k]);
             ValidationUtils.isTrue(!err, `Validation error on field '${k}': ${err}`);

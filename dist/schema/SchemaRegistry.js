@@ -50,7 +50,7 @@ class SchemaRegistry {
         Object.keys(sch.rules).forEach(k => {
             const rule = sch.rules[k];
             const value = data.fields[k];
-            ferrum_plumbing_1.ValidationUtils.isTrue(rule.required && (value === undefined || value === null), `Required field ${k} was not provided`);
+            ferrum_plumbing_1.ValidationUtils.isTrue(!rule.required || (value !== undefined && value !== null), `Required field ${k} was not provided`);
             const err = rule.validator(data.fields[k]);
             ferrum_plumbing_1.ValidationUtils.isTrue(!err, `Validation error on field '${k}': ${err}`);
         });
