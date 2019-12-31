@@ -8,7 +8,7 @@ export declare class SolidSecureStorage extends SolidUnsecureStorage {
     private unsecureStorage;
     private cryptoSvc;
     constructor(secureStorage: StringStorage, unsecureStorage: JsonStorage, cryptoSvc: CryptorService, schemaRegistry: SchemaRegistry, schema: string);
-    protected loadItem(dataKey: string): Promise<ObjectWithSchema>;
+    protected loadItem(dataKey: string): Promise<ObjectWithSchema | undefined>;
     protected removeItem(dataKey: string): Promise<void>;
     protected saveItem(dataKey: string, val: ObjectWithSchema): Promise<void>;
 }

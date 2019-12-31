@@ -14,9 +14,12 @@ export class SolidSecureStorage extends SolidUnsecureStorage {
         super(unsecureStorage, schemaRegistry, schema);
     }
 
-    protected async loadItem(dataKey: string): Promise<ObjectWithSchema> {
-        const fullKey = `${this.schema}/${dataKey}`;
+    protected async loadItem(dataKey: string): Promise<ObjectWithSchema|undefined> {
+        const fullKey = `${dataKey}`;
         const encKeyForSession = await this.secureStorage.getItem(fullKey);
+        if (!encKeyForSession) {
+            return undefined;
+        }
         const encSessionData = await this.unsecureStorage.load(fullKey) as { value: string };
         const sessionDataStr = await this.cryptoSvc.decryptToHex(
             { key: encKeyForSession, data: encSessionData.value });

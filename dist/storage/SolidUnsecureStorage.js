@@ -28,7 +28,10 @@ class SolidUnsecureStorage {
         return __awaiter(this, void 0, void 0, function* () {
             const key = `${this.schema}/${dataKey}`;
             let value = yield this.loadItem(key);
-            const schemaVer = SchemaUtils_1.SchemaUtils.ver(value.schema).major;
+            if (!value) {
+                return undefined;
+            }
+            const schemaVer = SchemaUtils_1.SchemaUtils.ver(value.version).major;
             const latestVer = this.schemaRegistry.getLastVersion(this.schema);
             if (latestVer > schemaVer) { // data upgrade is needed
                 const newValue = yield this.upgradeData(value, schemaVer, latestVer);

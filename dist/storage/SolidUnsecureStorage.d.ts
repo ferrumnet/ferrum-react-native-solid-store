@@ -13,7 +13,7 @@ export declare class SolidUnsecureStorage implements JsonStorage {
      * - If upgrade is required, upgrade it
      * @param dataKey the key
      */
-    load(dataKey: string): Promise<ObjectWithSchema>;
+    load(dataKey: string): Promise<ObjectWithSchema | undefined>;
     remove(key: string): Promise<void>;
     /**
      * Save process:

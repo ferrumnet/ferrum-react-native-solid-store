@@ -17,10 +17,13 @@ export class SolidUnsecureStorage implements JsonStorage {
      * - If upgrade is required, upgrade it
      * @param dataKey the key
      */
-    async load(dataKey: string): Promise<ObjectWithSchema> {
+    async load(dataKey: string): Promise<ObjectWithSchema|undefined> {
         const key = `${this.schema}/${dataKey}`;
         let value = await this.loadItem(key) as ObjectWithSchema;
-        const schemaVer = SchemaUtils.ver(value.schema).major;
+        if (!value) {
+            return undefined;
+        }
+        const schemaVer = SchemaUtils.ver(value.version).major;
         const latestVer = this.schemaRegistry.getLastVersion(this.schema)!;
         if (latestVer > schemaVer) { // data upgrade is needed
             const newValue = await this.upgradeData(value, schemaVer, latestVer);
