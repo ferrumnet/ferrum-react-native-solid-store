@@ -50,7 +50,7 @@ export class SchemaRegistry implements Injectable {
         const majorVer = SchemaUtils.ver(data.version).major;
         const latestVer = this.getLastVersion(data.schema);
         ValidationUtils.isTrue(majorVer === latestVer,
-            `Object being stored has schema version ${data.version} while `);
+            `Object being stored has schema version ${data.version} while expected version is ${latestVer}`);
         const key = `${data.schema}:${data.version}`;
         ValidationUtils.isTrue(this.schema.has(key), `Schema with key '${key}' is not registered`);
         const sch = this.schema.get(key)!;

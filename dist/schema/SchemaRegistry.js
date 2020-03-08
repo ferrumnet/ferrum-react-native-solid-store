@@ -43,7 +43,7 @@ class SchemaRegistry {
     validate(data) {
         const majorVer = SchemaUtils_1.SchemaUtils.ver(data.version).major;
         const latestVer = this.getLastVersion(data.schema);
-        ferrum_plumbing_1.ValidationUtils.isTrue(majorVer === latestVer, `Object being stored has schema version ${data.version} while `);
+        ferrum_plumbing_1.ValidationUtils.isTrue(majorVer === latestVer, `Object being stored has schema version ${data.version} while expected version is ${latestVer}`);
         const key = `${data.schema}:${data.version}`;
         ferrum_plumbing_1.ValidationUtils.isTrue(this.schema.has(key), `Schema with key '${key}' is not registered`);
         const sch = this.schema.get(key);
