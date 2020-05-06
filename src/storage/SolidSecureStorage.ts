@@ -21,6 +21,9 @@ export class SolidSecureStorage extends SolidUnsecureStorage {
             return undefined;
         }
         const encSessionData = await this.unsecureStorage.load(fullKey) as { value: string };
+        if (!encSessionData) {
+            return undefined;
+        }
         const sessionDataStr = await this.cryptoSvc.decryptToHex(
             { key: encKeyForSession, data: encSessionData.value });
         return JSON.parse(hexToUtf8(sessionDataStr)) as ObjectWithSchema;

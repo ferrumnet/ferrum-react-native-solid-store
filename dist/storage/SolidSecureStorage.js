@@ -26,6 +26,9 @@ class SolidSecureStorage extends SolidUnsecureStorage_1.SolidUnsecureStorage {
                 return undefined;
             }
             const encSessionData = yield this.unsecureStorage.load(fullKey);
+            if (!encSessionData) {
+                return undefined;
+            }
             const sessionDataStr = yield this.cryptoSvc.decryptToHex({ key: encKeyForSession, data: encSessionData.value });
             return JSON.parse(ferrum_crypto_1.hexToUtf8(sessionDataStr));
         });
